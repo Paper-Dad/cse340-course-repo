@@ -1,31 +1,242 @@
-html,
-body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
+:root {
+    --primary: #1d4ed8;
+    --primary-dark: #1e3a8a;
+    --background: #f4f7fb;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --text-muted: #4b5563;
+    --border: #d1d5db;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --radius: 14px;
+    --max-width: 1000px;
+    --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ===============================
+   BODY
+================================ */
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    font-family: var(--font-main);
+    background: linear-gradient(180deg, #eef4fb 0%, #f8fafc 100%);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+/* ===============================
+   TYPOGRAPHY
+================================ */
+h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+h2 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+p {
+    max-width: 700px;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   NAVIGATION
+================================ */
+nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+}
+
+nav ul {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav a {
+    padding: .6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--text);
+    transition: all .2s ease;
+}
+
+nav a:hover {
+    background: #eef4ff;
+    color: var(--primary-dark);
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+main {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+/* ===============================
+   HOME LOGO
+================================ */
+.main-logo {
+    display: block;
+    margin: 2rem auto 0 auto;
+    max-width: 420px;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+button,
+.btn,
+input[type="submit"] {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: .8rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease, transform .1s ease;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* ===============================
+   FORMS
+================================ */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: .8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 1rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: .9rem;
+    color: var(--text-muted);
+}
+
+/* ===============================
+   ACCESSIBILITY
+================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(29, 78, 216, .3);
+    outline-offset: 3px;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width:768px) {
+
+    nav ul {
+        gap: .5rem;
+    }
+
+    nav a {
+        font-size: .95rem;
+    }
+
+    main {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .main-logo {
+        max-width: 300px;
+    }
+
+}
+
+@media (max-width:480px) {
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
     }
 }

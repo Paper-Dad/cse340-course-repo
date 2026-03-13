@@ -53,3 +53,51 @@ CREATE TABLE IF NOT EXISTS categories (
     category_id SERIAL PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE
 );
+
+CREATE TABLE project_category (
+    project_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    FOREIGN KEY (project_id) REFERENCES project(project_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+INSERT INTO categories (category_name)
+VALUES
+('Construction'),
+('Food Assistance'),
+('Community Outreach'),
+('Education'),
+('Environmental');
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+(1,1),
+(1,3),
+(2,1),
+(2,3),
+(3,1),
+(3,4),
+(4,1),
+(4,5),
+(5,1),
+(5,3),
+(6,2),
+(6,3),
+(6,5),
+(7,2),
+(7,4),
+(7,5),
+(8,4),
+(8,5),
+(9,2),
+(9,3),
+(10,3),
+(10,4),
+(10,5),
+(11,2),
+(11,3),
+(12,3),
+(13,3),
+(14,3),
+(15,3);

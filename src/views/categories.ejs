@@ -5,13 +5,37 @@
             <%= title %>
         </h1>
 
-        <h2>Welcome to the CSE 340 Service Network!</h2>
-        <p>Enviromental</p>
-        <p>Educational</p>
-        <p>Community Service</p>
-        <p>Health and Wellness</p>
+        <p>Here are some of our service categories:</p>
 
-        <img class="main-logo" src="images/cse340-service-network.png" alt="CSE 340 Service Network Logo">
+        <% let currentCategory=null; %>
 
+            <ul>
+                <% categories.forEach(category=> { %>
+                    <% if (currentCategory !==category.category_name) { %>
+                        <% if (currentCategory !==null) { %>
+            </ul>
+            </li>
+            <% } %>
+
+                <li>
+                    <strong>
+                        <%= category.category_name %>
+                    </strong>
+                    <ul>
+                        <% currentCategory=category.category_name; %>
+                            <% } %>
+
+                                <li>
+                                    <%= category.title %>
+                                </li>
+
+                                <% }); %>
+
+                                    <% if (categories.length> 0) { %>
+                    </ul>
+                </li>
+                <% } %>
+                    </ul>
     </main>
+
     <%- include('partials/footer') %>

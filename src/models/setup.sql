@@ -11,3 +11,45 @@ VALUES
 ('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
 ('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
 ('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve-logo.png');
+
+/*Week Two Team Activity*/
+
+CREATE TABLE project (
+    project_id SERIAL PRIMARY KEY,
+    organization_id INT NOT NULL REFERENCES organization(organization_id),
+    title VARCHAR(150) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    location VARCHAR(200) NOT NULL,
+    project_date DATE NOT NULL
+);
+
+INSERT INTO project (organization_id, title, description, location, project_date)
+VALUES
+-- BrightFuture Builders (1)
+(1, 'Community Park Renovation', 'Volunteers help repair playground equipment and rebuild park benches.', 'Calgary Community Park', '2026-05-10'),
+(1, 'Affordable Housing Build', 'Assist with building affordable housing units for low-income families.', 'Calgary Southeast', '2026-06-15'),
+(1, 'School Repair Day', 'Repair damaged classrooms and repaint hallways in a local elementary school.', 'Riverside Elementary', '2026-04-20'),
+(1, 'Neighborhood Cleanup Construction', 'Remove debris and repair sidewalks in a high traffic neighborhood.', 'Downtown Calgary', '2026-07-12'),
+(1, 'Senior Center Maintenance', 'Install ramps and perform maintenance to improve accessibility.', 'Calgary Senior Center', '2026-08-05'),
+
+-- GreenHarvest Growers (2)
+(2, 'Community Garden Planting', 'Help plant vegetables and herbs for the neighborhood community garden.', 'Hillcrest Community Garden', '2026-05-03'),
+(2, 'Urban Farming Workshop', 'Teach residents how to grow food in small urban spaces.', 'GreenHarvest Training Center', '2026-06-07'),
+(2, 'School Garden Build', 'Create a learning garden for students to study sustainable agriculture.', 'Westview High School', '2026-04-28'),
+(2, 'Harvest Food Drive', 'Collect and distribute fresh produce to local food banks.', 'GreenHarvest Warehouse', '2026-09-10'),
+(2, 'Composting Education Day', 'Volunteers teach composting techniques to community members.', 'Central Community Center', '2026-07-18'),
+
+-- UnityServe Volunteers (3)
+(3, 'Food Bank Sorting Day', 'Organize and package donated food items for families in need.', 'Calgary Food Bank', '2026-05-12'),
+(3, 'Charity Run Support', 'Volunteers manage registration tables and water stations.', 'City Marathon Route', '2026-06-20'),
+(3, 'Senior Companion Visit', 'Spend time visiting seniors in assisted living facilities.', 'Maple Grove Assisted Living', '2026-04-25'),
+(3, 'Clothing Donation Drive', 'Collect and sort donated clothing for shelters.', 'UnityServe Center', '2026-08-14'),
+(3, 'Holiday Toy Drive', 'Wrap and organize toys for children in need during the holidays.', 'UnityServe Warehouse', '2026-12-05');
+
+
+/*Week Two Final Assignment*/
+
+CREATE TABLE IF NOT EXISTS categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL UNIQUE
+);

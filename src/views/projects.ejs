@@ -5,17 +5,33 @@
             <%= title %>
         </h1>
 
-        <p>Here are some of our service projects:</p>
+        <p>Here are the next upcoming service projects:</p>
 
         <ul>
             <% projects.forEach(project=> { %>
-                <li>
-                    <strong>
-                        <%= new Date(project.project_date).toDateString() %>: <%= project.title %> (<%=
-                                    project.organization_name %>)
-                    </strong><br>
-                    Description: <%= project.description %><br>
-                        Location: <%= project.location %><br>
+                <li style="margin-bottom: 1.5rem;">
+
+                    <!-- Entire project tile is clickable -->
+                    <a href="/project/<%= project.project_id %>" style="text-decoration: none; color: inherit;">
+
+                        <strong>
+                            <%= project.title %>
+                        </strong>
+                    </a>
+
+                    <br>
+
+                    <!-- Organization link -->
+                    Organization:
+                    <a href="/organization/<%= project.organization_id %>">
+                        <%= project.organization_name %>
+                    </a>
+
+                    <br>
+
+                    Date: <%= new Date(project.date).toDateString() %><br>
+                        Location: <%= project.location %>
+
                 </li>
                 <% }); %>
         </ul>

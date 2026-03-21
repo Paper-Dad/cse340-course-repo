@@ -3,7 +3,7 @@ import { showOrganizationDetailsPage } from './organizations.js';
 import { showHomePage } from './index.js';
 import { showOrganizationsPage } from './organizations.js';
 import { showProjectDetailsPage, showProjectsPage } from './projects.js';
-import { showCategoriesPage } from './categories.js';
+import { showCategoriesPage, showCategoryDetails } from './categories.js';
 import { testErrorPage } from './errors.js';
 
 const router = express.Router();
@@ -19,5 +19,6 @@ router.get('/test-error', testErrorPage);
 // Route for organization details page
 router.get('/organization/:id', showOrganizationDetailsPage);
 router.get('/project/:id', showProjectDetailsPage);
+router.get('/category/:id', showCategoryDetails);
 
 export default router;

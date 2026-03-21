@@ -1,31 +1,44 @@
 <%- include('partials/header') %>
 
-<main>
-    <h1>
-        <%= project.title %>
-    </h1>
+    <main>
+        <h1>
+            <%= project.title %>
+        </h1>
 
-    <p>
-        <strong>Description:</strong><br>
-        <%= project.description %>
-    </p>
+        <p>
+            <strong>Description:</strong><br>
+            <%= project.description %>
+        </p>
 
-    <p>
-        <strong>Date:</strong><br>
-        <%= new Date(project.date).toDateString() %>
-    </p>
+        <p>
+            <strong>Date:</strong><br>
+            <%= new Date(project.date).toDateString() %>
+        </p>
 
-    <p>
-        <strong>Location:</strong><br>
-        <%= project.location %>
-    </p>
+        <p>
+            <strong>Location:</strong><br>
+            <%= project.location %>
+        </p>
 
-    <p>
-        <strong>Organization:</strong><br>
-        <a href="/organization/<%= project.organization_id %>">
-            <%= project.organization_name %>
-        </a>
-    </p>
-</main>
+        <p>
+            <strong>Organization:</strong><br>
+            <a href="/organization/<%= project.organization_id %>">
+                <%= project.organization_name %>
+            </a>
+        </p>
 
-<%- include('partials/footer') %>
+        <p>
+            <strong>Categories:</strong><br>
+            <% if (categories && categories.length> 0) { %>
+                <% categories.forEach(category=> { %>
+                    <a href="/category/<%= category.category_id %>" class="category-tag">
+                        <%= category.category_name %>
+                    </a>
+                    <% }); %>
+                        <% } else { %>
+                            No categories assigned.
+                            <% } %>
+        </p>
+    </main>
+
+    <%- include('partials/footer') %>

@@ -9,33 +9,36 @@
 
         <% let currentCategory=null; %>
 
-            <ul>
-                <% categories.forEach(category=> { %>
-                    <% if (currentCategory !==category.category_name) { %>
-                        <% if (currentCategory !==null) { %>
-            </ul>
-            </li>
-            <% } %>
+        <ul>
+            <% categories.forEach(category=> { %>
+                <% if (currentCategory !==category.category_name) { %>
+                    <% if (currentCategory !==null) { %>
+                        </ul>
+                    </li>
+                    <% } %>
 
-                <li>
-                    <strong>
-                        <%= category.category_name %>
-                    </strong>
-                    <ul>
-                        <% currentCategory=category.category_name; %>
-                            <% } %>
+                    <li>
+                        <strong>
+                            <a href="/category/<%= category.category_id %>">
+                                <%= category.category_name %>
+                            </a>
+                        </strong>
+                        <ul>
+                            <% currentCategory=category.category_name; %>
+                    <% } %>
 
-                                <li>
-                                    <%= category.title %>
-                                </li>
+                    <li>
+                        <a href="/project/<%= category.project_id %>">
+                            <%= category.title %>
+                        </a>
+                    </li>
+                <% }); %>
 
-                                <% }); %>
-
-                                    <% if (categories.length> 0) { %>
-                    </ul>
-                </li>
+                <% if (categories.length> 0) { %>
+                        </ul>
+                    </li>
                 <% } %>
-                    </ul>
+            </ul>
     </main>
 
     <%- include('partials/footer') %>

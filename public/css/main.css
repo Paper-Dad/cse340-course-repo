@@ -240,3 +240,19 @@ select:focus-visible {
         animation: none !important;
     }
 }
+
+.category-tag {
+    display: inline-block;
+    margin: 0.25rem 0.4rem 0.25rem 0;
+    padding: 0.35rem 0.7rem;
+    background-color: #e6f0ff;
+    border: 1px solid #b3ccff;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #003366;
+    font-size: 0.95rem;
+}
+
+.category-tag:hover {
+    background-color: #d9e8ff;
+}

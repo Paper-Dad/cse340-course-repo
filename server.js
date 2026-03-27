@@ -1,3 +1,5 @@
+import flash from './src/middleware/flash.js';
+import session from 'express-session';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import express from 'express';
@@ -15,9 +17,25 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+
+// Set up session management
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
+}));
+
+// Use flash message middleware
+app.use(flash);
+
 /**
   * Configure Express middleware
   */
+
+// Allow Express to receive and process common POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));

@@ -288,3 +288,17 @@ select:focus-visible {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+.edit-link {
+    padding: .6rem 1rem;
+    border-radius: 8px;
+    font-weight: 800;
+    color: var(--text);
+    transition: all .2s ease;
+    text-decoration: none;
+}
+
+.edit-link:hover {
+    background: #eef4ff;
+    color: var(--primary-dark);
+}

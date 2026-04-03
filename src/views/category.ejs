@@ -20,8 +20,10 @@
             <% } else { %>
                 <p>No service projects are currently associated with this category.</p>
                 <% } %>
+
+        <% if (user && user.role_name==='admin' ) { %>
+            <a href="/edit-category/<%= category.category_id %>" class="edit-link">Edit Category</a>
+        <% } %>        
     </main>
-    <p>
-        <a href="/edit-category/<%= category.category_id %>">Edit Category</a>
-    </p>
-    <%- include('partials/footer') %>
+
+<%- include('partials/footer') %>

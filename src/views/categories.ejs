@@ -38,10 +38,11 @@
                         </ul>
                     </li>
                 <% } %>
-            </ul>
+        </ul>
+        <% if (user && user.role_name==='admin' ) { %>
+            <a href="/new-category" class="edit-link">Add New Category</a>
+        <% } %>
+
     </main>
-    <p>
-        <a href="/new-category">Add New Category</a>
-    </p>
 
     <%- include('partials/footer') %>

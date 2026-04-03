@@ -5,7 +5,7 @@ import { showOrganizationsPage, showNewOrganizationForm, processNewOrganizationF
 import { showProjectDetailsPage, showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, processEditProjectForm, showEditProjectForm } from './projects.js';
 import { showCategoriesPage, showCategoryDetails, showAssignCategoriesForm, processAssignCategoriesForm, showCreateCategoryForm, processCreateCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './categories.js';
 import { testErrorPage } from './errors.js';
-import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole } from './users.js';
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage } from './users.js';
 
 const router = express.Router();
 
@@ -13,6 +13,8 @@ router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
 router.get('/projects', showProjectsPage);
 router.get('/categories', showCategoriesPage);
+router.get('/users', requireRole('admin'), showUsersPage);
+
 // Route for new organization page
 router.get('/new-organization', requireRole('admin'), showNewOrganizationForm);
 

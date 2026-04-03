@@ -302,3 +302,29 @@ select:focus-visible {
     background: #eef4ff;
     color: var(--primary-dark);
 }
+
+/* ===============================
+    USERS TABLE
+================================ */
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.users-table th,
+.users-table td {
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.users-table th {
+    background: var(--surface);
+    font-weight: 600;
+}
+
+.users-table tr:nth-child(even) {
+    background: #f9f9f9;
+}

@@ -5,7 +5,7 @@ import { showOrganizationsPage, showNewOrganizationForm, processNewOrganizationF
 import { showProjectDetailsPage, showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, processEditProjectForm, showEditProjectForm } from './projects.js';
 import { showCategoriesPage, showCategoryDetails, showAssignCategoriesForm, processAssignCategoriesForm, showCreateCategoryForm, processCreateCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './categories.js';
 import { testErrorPage } from './errors.js';
-import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage } from './users.js';
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage, addVolunteer, removeVolunteer } from './users.js';
 
 const router = express.Router();
 
@@ -46,6 +46,11 @@ router.post('/edit-category/:id', requireRole('admin'), categoryValidation, proc
 // User registration routes
 router.get('/register', showUserRegistrationForm);
 router.post('/register', processUserRegistrationForm);
+
+// Routes for volunteering and removing volunteer from project
+router.post('/volunteer/:projectId', requireLogin, addVolunteer);
+router.post('/unvolunteer/:projectId', requireLogin, removeVolunteer);
+
 
 // User login routes
 router.get('/login', showLoginForm);

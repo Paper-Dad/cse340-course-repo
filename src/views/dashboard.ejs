@@ -10,9 +10,29 @@
         <p>Username: <%= email %>
         </p>
 
-        <% if (user && user.role_name==='admin' ) { %>
-            <a href="/users" class="edit-link">See All Users</a>
-            <% } %>
+        <h2>Your Volunteered Projects</h2>
+
+        <% if (volunteerProjects && volunteerProjects.length> 0) { %>
+            <ul>
+                <% volunteerProjects.forEach(project=> { %>
+                    <li>
+                        <a href="/project/<%= project.project_id %>">
+                            <%= project.title %>
+                        </a>
+
+                        <form action="/unvolunteer/<%= project.project_id %>" method="POST" style="display:inline;">
+                            <button type="submit">Remove Volunteer</button>
+                        </form>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p>You have not signed up to volunteer for any projects yet.</p>
+                <% } %>
+
+                    <% if (user && user.role_name==='admin' ) { %>
+                        <a href="/users" class="edit-link">See All Users</a>
+                        <% } %>
 
     </main>
 

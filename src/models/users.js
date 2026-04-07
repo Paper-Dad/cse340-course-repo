@@ -74,5 +74,51 @@ const getAllUsers = async () => {
     return result.rows;
 };
 
+const createProjectVolunteer = async (userId, projectId) => {
+    const query = `
+        INSERT INTO users_project (user_id, project_id)
+        VALUES ($1, $2)
+        ON CONFLICT (project_id, user_id) DO NOTHING
+        RETURNING *
+    `;
 
-export { createUser, authenticateUser, getAllUsers};
+    const result = await db.query(query, [userId, projectId]);
+
+    if (result.rows.length === 0) {
+        return null; // already exists
+    }
+
+    return result.rows[0];
+};
+
+const removeProjectVolunteer = async (userId, projectId) => {
+    const query = `
+        DELETE FROM users_project
+        WHERE user_id = $1 AND project_id = $2
+        RETURNING *
+    `;
+
+    const result = await db.query(query, [userId, projectId]);
+
+    if (result.rows.length === 0) {
+        return null; // not found
+    }
+
+    return result.rows[0];
+};
+
+const getUserProjects = async (userId) => {
+    const query = `
+        SELECT p.project_id, p.title, p.description, p.location, p.project_date, o.name AS organization_name
+        FROM users_project up
+        JOIN project p ON up.project_id = p.project_id
+        JOIN organization o ON p.organization_id = o.organization_id
+        WHERE up.user_id = $1
+    `;
+
+    const result = await db.query(query, [userId]);
+    return result.rows;
+};
+
+
+export { createUser, authenticateUser, getAllUsers, createProjectVolunteer, removeProjectVolunteer, getUserProjects };
